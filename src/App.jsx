@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ItemPrueba } from './components/ItemPrueba';
+import ItemList, { ItemPrueba } from './components/ItemList';
 import Nav from './components/Nav';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
         return (
         <>
             <Nav />
-            <ItemPrueba />
+            <ItemList />
 
         </>
         );

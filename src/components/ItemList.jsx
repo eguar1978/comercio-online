@@ -1,7 +1,7 @@
 // @flow 
 import * as React from 'react';
 
-export const ItemPrueba = () => {
+export const ItemList = () => {
     return (
         <>
         <div class="container mx-auto w-full overflow-y-auto bg-blue-200">
@@ -155,3 +155,5 @@ export const ItemPrueba = () => {
         </>
     );
 };
+
+export default ItemList;
