@@ -1,121 +1,88 @@
-// @flow 
-import { SourceMapConsumer } from 'postcss/node_modules/source-map';
-import ButtonCart from './varios/ButtonCart';
+
+import {useState, useEffect} from 'react';
+import Item from './Item';
+
 
 export const ItemList = () => {
+
+    const addCarrito = () => {
+        alert("Producto agregado ok");
+    }
+
+    const [items, setitems] = useState([]);
+
+    const products = [
+        {
+            id          : 1,
+            nombre      : 'Reloj',
+            descripcion : 'Clasico, dama',
+            valor       : '15,50',
+            stock       : 4
+        },
+        {
+            id          : 2,
+            nombre      : 'Reloj',
+            descripcion : 'Clasico, hombre',
+            valor       : '15,00',
+            stock       : 8
+        },
+        {
+            id          : 3,
+            nombre      : 'Reloj',
+            descripcion : 'Clasico, niño',
+            valor       : '12,50',
+            stock       : 6
+        },
+        {
+            id          : 4,
+            nombre      : 'Reloj',
+            descripcion : 'Clasico, niña',
+            valor       : '13,50',
+            stock       : 9
+        }
+    ];
+
+    
+    const getProducts = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(products);
+        },5000)
+    })
+
+    useEffect(() => {
+        getProducts.then(rta => setitems(rta))
+    },[])
+
+    useEffect(() => {
+        
+        items.map(item => console.log(item));
+
+    },[items])
+    
+
+
+    /* MENEJAR STOCK Y CANTIDAD DE ARTICULOS A AGREGAR AL CARRO */
 
     return (
         <>
         <div className="container mx-auto w-full overflow-y-auto bg-blue-200">
             <div className="px-10 grid grid-cols-4 gap-4">
-                <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center pb-4">
-                    <div className="bg-white rounded-lg mt-5">
-                        <img
-                            src="https://picsum.photos/1600/900"
-                            className="h-40 rounded-md"
-                            alt=""
+
+                {
+                    items.map(item => 
+                    
+                        <Item key={item.id}
+                        descripcion={item.descripcion}
+                        nombre={item.nombre}
+                        valor={item.valor}
+                        stock={item.stock}
+                        action={addCarrito}
+
                         />
-                    </div>
-                    <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-                    <div className="py-5 px-5 ">
-                        <span className="font-bold text-gray-800 text-lg">Item List 1</span>
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm text-gray-600 font-light">
-                                Desc : Desc item
-                            </div>
-                            <div className="text-2xl text-red-600 font-bold">
-                                $15.00
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
-                            <ButtonCart />
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center pb-4">
-                    <div className="bg-white rounded-lg mt-5">
-                        <img
-                            src="https://picsum.photos/1600/900"
-                            className="h-40 rounded-md"
-                            alt=""
-                        />
-                    </div>
-                    <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-                    <div className="py-5 px-5 ">
-                        <span className="font-bold text-gray-800 text-lg">Item List 1</span>
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm text-gray-600 font-light">
-                                Desc : Desc item
-                            </div>
-                            <div className="text-2xl text-red-600 font-bold">
-                                $15.00
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
-                            <ButtonCart />
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center pb-4">
-                    <div className="bg-white rounded-lg mt-5">
-                        <img
-                            src="https://picsum.photos/1600/900"
-                            className="h-40 rounded-md"
-                            alt=""
-                        />
-                    </div>
-                    <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-                    <div className="py-5 px-5 ">
-                        <span className="font-bold text-gray-800 text-lg">Item List 1</span>
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm text-gray-600 font-light">
-                                Desc : Desc item
-                            </div>
-                            <div className="text-2xl text-red-600 font-bold">
-                                $15.00
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
-                            <ButtonCart />
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center pb-4">
-                    <div className="bg-white rounded-lg mt-5">
-                        <img
-                            src="https://picsum.photos/1600/900"
-                            className="h-40 rounded-md"
-                            alt=""
-                        />
-                    </div>
-                    <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-                    <div className="py-5 px-5 ">
-                        <span className="font-bold text-gray-800 text-lg">Item List 1</span>
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm text-gray-600 font-light">
-                                Desc : Desc item
-                            </div>
-                            <div className="text-2xl text-red-600 font-bold">
-                                $15.00
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
-                            <ButtonCart />
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+
+                    )
+                }
+
             </div>
         </div>
         </>

@@ -1,16 +1,29 @@
 import React, { useState} from 'react';
 
-const ButtonCart = () => {
+const ButtonCart = ({stock}) => {
 
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
 
     const sumaCart = () => {
-        setCount(count + 1);
+
+        if(count < stock){
+            setCount(count + 1);
+        }else{
+            alert("No hay stock suficiente");
+        }
+        
     }
 
     const restaCart = () => {
-        setCount(count - 1);
+
+        if(count > 1){
+            setCount(count - 1);
+        }else{
+            alert("El minimo de compra es 1");
+        }
+        
     }
+    
 
     return (
         <>
