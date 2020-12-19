@@ -46,7 +46,7 @@ export const ItemList = () => {
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products);
-        },5000)
+        },2000)
     })
 
     useEffect(() => {
