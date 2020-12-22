@@ -25,8 +25,8 @@ function Nav(){
                     <span className="p-2 md:flex lg:flex xl:flex hidden">Login</span>
                     <Heart />
                     <span className="p-2 md:flex lg:flex xl:flex hidden">Favoritos</span>
-                    <Search />
-                    <Cart />
+                    <Search className="ml-2 fill-current text-gray-400 hover:text-white  xl:hidden lg:hidden md:hidden" width="24" height="24" />
+                    <Cart className="ml-2 fill-current text-gray-400 hover:text-white  xl:hidden lg:hidden md:hidden mr-2" width="32" height="32" />
                     </div>
                 </div>
 
@@ -36,14 +36,10 @@ function Nav(){
                     </div>
                     <div className="flex items-center p-6">
                     <div className="p-2">
-                        <svg width="48px" height="48px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                            <path fill="#000" fill-rule="evenodd" d="M19.4 21.4a8.5 8.5 0 112-2L27 25c.6.6.6 1.4 0 2-.6.6-1.4.6-2 0l-5.6-5.6zm-4.9-.4a6.5 6.5 0 100-13 6.5 6.5 0 000 13z"/>
-                        </svg>
+                        <Search width="34" height="34" />
                     </div>
                     <div>
-                        <svg width="48px" height="48px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92"><defs/>
-                            <path d="M92 27L81 61c-1 2-3 4-5 4H34c-2 0-4-1-5-4L13 19H4c-2 0-4-2-4-4s2-4 4-4h12c2 0 3 1 4 3l16 43h38l9-27H35c-2 0-4-2-4-4s2-4 4-4h53l3 2 1 3zM36 70l-4 2-2 5 2 4c1 2 3 2 4 2l5-2 2-4-2-5-5-2zm36 0l-4 2-2 5c0 1 0 3 2 4 1 2 3 2 4 2 2 0 4 0 5-2l2-4-2-5-5-2z"/>
-                        </svg>
+                        <Cart width="48" height="48" />
                     </div>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ const Item = ({nombre, descripcion, valor, stock, action}) =>{
                             </div>
                             <div className="flex items-center justify-center">
                                 <button onClick={action} class="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-                                    <span>Download</span>
+                                    <span>Agregar</span>
                                 </button>
                             </div>
                         </div>
