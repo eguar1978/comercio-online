@@ -1,6 +1,12 @@
-import ButtonCart from "./varios/ButtonCart"
+import ItemCount from "./varios/ItemCount";
 
-const Item = ({nombre, descripcion, valor, stock, action}) =>{
+
+const Item = ({nombre, descripcion, valor, stock}) =>{
+
+    const addCarrito = () => {
+        alert("Producto agregado ok");
+    }
+
     
     return (
         <>
@@ -13,7 +19,7 @@ const Item = ({nombre, descripcion, valor, stock, action}) =>{
                         />
                     </div>
                     <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-                        <div className="py-5 px-5 ">
+                        <div className="py-5 px-5">
                             <span className="font-bold text-gray-800 text-lg">{nombre}</span>
                             <div className="flex items-center justify-between">
                                 <div className="text-sm text-gray-600 font-light">
@@ -26,19 +32,17 @@ const Item = ({nombre, descripcion, valor, stock, action}) =>{
                             <div className="flex items-center justify-center">
                                 <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
                                 
-                                <ButtonCart
-                                    stock={stock}
-                                />
+                                <ItemCount stock={stock} />
                                
                                 </div>
                             </div>
                             <div className="flex items-center justify-center">
-                                <div div className="text-sm text-gray-900 font-light">
+                                <div className="text-sm text-gray-900 font-light">
                                     Stock disponible: {stock}
                                 </div>
                             </div>
                             <div className="flex items-center justify-center">
-                                <button onClick={action} class="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+                                <button onClick={ addCarrito } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
                                     <span>Agregar</span>
                                 </button>
                             </div>
