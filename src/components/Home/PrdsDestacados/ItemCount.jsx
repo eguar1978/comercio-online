@@ -17,7 +17,7 @@ const ItemCount = ({stock}) => {
          <button onClick={ () => { count < stock ? setCount(count + 1) : alert("No hay stock suficiente") } } 
             className="font-semibold border-l  bg-gray-200 hover:bg-gray-600 hover:text-white text-black border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer">
             <span className="m-auto">+</span>
-         </button>   
+         </button >   
         </>
     )
 }

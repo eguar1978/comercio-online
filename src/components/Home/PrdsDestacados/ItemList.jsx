@@ -1,5 +1,5 @@
-
 import {useState, useEffect} from 'react';
+import Loading from '../../varios/Loading';
 import Item from './Item';
 
 
@@ -44,18 +44,18 @@ export const ItemList = () => {
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products);
-        },2000)
+        },3000)
     })
 
     useEffect(() => {
         getProducts.then(rta => setitems(rta))
-    },[])
+    },[]);
 
     useEffect(() => {
         
         items.map(item => console.log(item));
 
-    },[items])
+    },[items]);
     
 
 
@@ -63,25 +63,38 @@ export const ItemList = () => {
 
     return (
         <>
-            <div className="container mx-auto w-full overflow-y-auto bg-blue-200">
-                <div className="px-10 grid grid-cols-4 gap-4">
 
-                    {
-                        items.map(item => 
-                        
-                            <Item key={item.id}
-                            descripcion={item.descripcion}
-                            nombre={item.nombre}
-                            valor={item.valor}
-                            stock={item.stock}
+            {
+                items.length ? 
 
-                            />
+                <>
+                    <div className="overflow-y-auto bg-blue-200">
+                        <div className="px-10 grid grid-cols-4 gap-4">
+                            {
+                                items.map(item => 
+                                
+                                    <Item
+                                        key={item.id}
+                                        descripcion={item.descripcion}
+                                        nombre={item.nombre}
+                                        valor={item.valor}
+                                        stock={item.stock}
+                                    />
 
-                        )
-                    }
+                                )
+                            }
 
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </> 
+            :       
+                    <div className="mx-auto w-full overflow-y-auto bg-blue-200">
+                        <div className="px-10 grid grid-cols-4 gap-4">
+                            <Loading />
+                        </div>
+                    </div>
+            }            
+
         </>
     );
 };
