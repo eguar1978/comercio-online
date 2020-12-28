@@ -1,9 +1,10 @@
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
 import { GoGrabber } from "react-icons/go";
+import { Link } from 'react-router-dom';
 import logo from './../../../assets/logo.png';
 
 
-function Nav(){
+export const Nav = () => {
     return (
         <>
             <div className="mx-auto">
@@ -23,10 +24,10 @@ function Nav(){
                 </div>
 
                 <div className="h-8 mx-auto bg-gray-900 text-gray-400 flex items-center md:justify-center sm:p-2 justify-end ">
-                    <span className="p-2 md:flex lg:flex xl:flex hidden">Damas</span>
-                    <span className="p-2 md:flex lg:flex xl:flex hidden">Caballero</span>
-                    <span className="p-2 md:flex lg:flex xl:flex hidden">Niños</span>
-                    <span className="p-2 md:flex lg:flex xl:flex hidden">Niñas</span>
+                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/"> Home </Link>
+                    </span>
+                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/dama"> Dama </Link></span>
+                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/caballero"> Caballero </Link></span>
                     <FaSearch size="1em" className="text-white md:hidden mr-1"/>
                     <FaShoppingCart size="1em" className="text-white md:hidden mr-1"/>
                     <GoGrabber  size="1.75em" className="text-white md:hidden mr-1"/>
