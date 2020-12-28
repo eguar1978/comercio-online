@@ -4,8 +4,9 @@ Este proyecto se inició con [Create React App](https://github.com/facebook/crea
 El proyecto corresponde a una tienda web de venta de relojes. \
 Actualmente esta habilitada la Home junto a las categorias Dama y Caballero. \
 En la Home se depliega el catalogo de productos y dentro de las categorias \
-los productos son filtrados por Dama o Caballero. \ 
+los productos son filtrados por Dama o Caballero. 
 
+![](web.gif)
 
 ## Scripts disponibles
 
