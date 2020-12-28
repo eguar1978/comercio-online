@@ -1,12 +1,17 @@
-# Getting Started with Create React App
+# Introducción a React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se inició con [Create React App](https://github.com/facebook/create-react-app). \
+El proyecto corresponde a una tienda web de venta de relojes. \
+Actualmente esta habilitada la Home junto a las categorias Dama y Caballero. \
+En la Home se depliega el catalogo de productos y dentro de las categorias \
+los productos son filtrados por Dama o Caballero. \ 
 
-## Available Scripts
+
+## Scripts disponibles
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
