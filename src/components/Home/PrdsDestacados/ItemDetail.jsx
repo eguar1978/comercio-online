@@ -2,12 +2,9 @@ import React from 'react'
 import { SiFacebook, SiTwitter, SiWhatsapp } from "react-icons/si";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import ItemCount from './ItemCount'
+import { withRouter } from 'react-router-dom'
 
-const ItemDetail = ({ product }) => {
-
-    const addCarrito = () => {
-        alert("Producto agregado ok");
-    }
+const ItemDetail = ({ product, history }) => {
 
     return (
         <>
@@ -58,7 +55,7 @@ const ItemDetail = ({ product }) => {
                         </div>
                         <div className="pt-4">
                             <div className="flex items-center justify-center pl-3">
-                                    <button onClick={ addCarrito } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 ml-2 rounded">
+                                    <button onClick={ () => history.push('/cart') } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 ml-2 rounded">
                                         <span>Agregar</span>
                                     </button>
                             </div>
@@ -71,4 +68,4 @@ const ItemDetail = ({ product }) => {
     )
 }
 
-export default ItemDetail
+export default withRouter(ItemDetail)

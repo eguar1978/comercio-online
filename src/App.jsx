@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Cart from './components/general/Cart';
 import Error404 from './components/general/Error404';
 import Nav from './components/general/Nav';
 import ItemDetailContainer from './components/Home/PrdsDestacados/ItemDetailContainer';
@@ -20,6 +21,9 @@ class App extends Component {
                     </Route>
                     <Route exact path="/item/:itemid">
                         <ItemDetailContainer />
+                    </Route>
+                    <Route exact path="/cart">
+                        <Cart />
                     </Route>
                     <Route path="*">
                         <Error404 />

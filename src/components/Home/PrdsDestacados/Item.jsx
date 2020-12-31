@@ -1,12 +1,7 @@
 import ItemCount from "./ItemCount";
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
-const Item = ({producto }) =>{
-
-    const addCarrito = () => {
-        alert("Producto agregado ok");
-    }
-
+const Item = ({producto, history }) =>{
     
     return (
         <>
@@ -42,7 +37,7 @@ const Item = ({producto }) =>{
                                 </div>
                             </div>
                             <div className="flex items-center justify-center">
-                                <button onClick={ addCarrito } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+                                <button onClick={ () => history.push('/cart') } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
                                     <span>Agregar</span>
                                 </button>
                             </div>
@@ -59,4 +54,4 @@ const Item = ({producto }) =>{
     );
 };
 
-export default Item;
+export default withRouter(Item);
