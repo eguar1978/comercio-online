@@ -9,8 +9,7 @@ export const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
 
     const { categoria } = useParams();
-    console.log(categoria);
-  
+      
     const promesaProductos = new Promise((resolve, reject) => {
       setTimeout(() => resolve(listaProductos), 500);
     });

@@ -11,7 +11,7 @@ const ItemDetailContainer = () => {
 
     
 
-    const [product, setProducts] = useState(null);
+    const [producto, setProduct] = useState(null);
 
     const { itemid } = useParams();
 
@@ -25,16 +25,16 @@ const ItemDetailContainer = () => {
     });
 
     useEffect(() => {
-        getProduct.then(rta => setProducts(rta))
+        getProduct.then(rta => setProduct(rta))
     },[]);
 
     return (
         <>
 
             {
-                product ?
+                producto ?
             <>
-                <ItemDetail product={product} />
+                <ItemDetail product={producto} />
             </>
             :
                 <>

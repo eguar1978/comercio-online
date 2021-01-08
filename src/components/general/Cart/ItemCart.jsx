@@ -1,13 +1,20 @@
 import React from 'react'
+import {Store} from '../../../context/store'
+import { useContext } from 'react';
+
+
 
 const ItemCart = () => {
+
+    const [data, setData] = useContext(Store);
+
     return (
         <>
             <div className="border-b-2 pt-2">
                 <ul>
-                    <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-400  hover:font-bold rounded rounded-lg">
+                    <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-400  hover:font-bold rounded-lg">
                         <span>
-                            <img className="rounded" src="https://cdn.shopify.com/s/files/1/0368/1242/3307/products/8216_900x.jpg?v=1588987578" alt="descripcion" srcset=""/>
+                            <img className="rounded" src="https://cdn.shopify.com/s/files/1/0368/1242/3307/products/8216_900x.jpg?v=1588987578" alt="descripcion" />
                         </span>
                         <span>
                             <ul className="ml-2">

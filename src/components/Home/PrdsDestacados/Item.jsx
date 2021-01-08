@@ -1,7 +1,7 @@
 import ItemCount from "./ItemCount";
 import {Link, withRouter} from 'react-router-dom'
 
-const Item = ({producto, history }) =>{
+const Item = ({producto}) =>{
     
     return (
         <>
@@ -24,28 +24,18 @@ const Item = ({producto, history }) =>{
                                     ${producto.precio}
                                 </div>
                             </div>
-                            <div className="flex items-center justify-center">
-                                <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
-                                
-                                <ItemCount stock={producto.stock} />
-                               
-                                </div>
-                            </div>
-                            <div className="flex items-center justify-center">
+                            <hr className="mt-2 border-solid border-2 border-blue-300"/>
+                            <div className="flex items-center justify-center mt-2">
                                 <div className="text-sm text-gray-900 font-light">
                                     Stock disponible: {producto.stock}
                                 </div>
                             </div>
                             <div className="flex items-center justify-center">
-                                <button onClick={ () => history.push('/cart') } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
-                                    <span>Agregar</span>
-                                </button>
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <button>
+                                <button className="uppercase px-2 py-1 rounded bg-blue-300 text-blue-900 max-w-max shadow-sm hover:shadow-lg mt-1">
                                         <Link to={`/item/${producto.id}`}>  Ver más </Link>
                                 </button>
                             </div>
+
                         </div>
                     </div>
                 </div>

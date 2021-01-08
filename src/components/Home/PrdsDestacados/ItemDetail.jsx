@@ -1,10 +1,34 @@
-import React from 'react'
+import React from 'react';
+import {useState, useContext} from 'react';
 import { SiFacebook, SiTwitter, SiWhatsapp } from "react-icons/si";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import ItemCount from './ItemCount'
-import { withRouter } from 'react-router-dom'
+import ItemCount from './ItemCount';
+import { withRouter } from 'react-router-dom';
+import {Store} from '../../../context/store'
 
-const ItemDetail = ({ product, history }) => {
+const ItemDetail = ({ product, history, item }) => {
+
+    const [data, setData] = useContext(Store);
+    const [cant, setCant] = useState(1);	
+  
+    const addCarrito = () => {
+        setData({
+            ...data, 
+            cantidad: data.cantidad + cant,
+            items: [...data.items, product],
+        });
+
+        history.push('/cart');
+        //alert(`Agregaste ${cant} productos al carrito`);	
+    }
+
+    const sumaCarrito = () => {
+        setCant(cant + 1);
+    }
+
+    const restaCarrito = () => {
+        cant > 1 ? setCant(cant - 1) : alert("El minimo de compra es 1");
+    }
 
     return (
         <>
@@ -46,7 +70,7 @@ const ItemDetail = ({ product, history }) => {
                             <div className="flex items-center justify-center pl-3">
                                     <div className="flex flex-row border h-10 w-24 rounded-lg border-gray-400 relative">
                                     
-                                    <ItemCount stock={product.stock} />
+                                    <ItemCount sumaCarrito={sumaCarrito} restaCarrito={restaCarrito} cant={cant}/>
                                     
                                 
                                     </div>
@@ -55,7 +79,7 @@ const ItemDetail = ({ product, history }) => {
                         </div>
                         <div className="pt-4">
                             <div className="flex items-center justify-center pl-3">
-                                    <button onClick={ () => history.push('/cart') } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 ml-2 rounded">
+                                    <button onClick={ addCarrito } className="bg-blue-300 hover:bg-blue-500 text-grey-darkest font-bold py-2 px-4 ml-2 rounded">
                                         <span>Agregar</span>
                                     </button>
                             </div>
