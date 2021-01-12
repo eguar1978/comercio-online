@@ -2,6 +2,8 @@ import React from 'react'
 import Item from './Item';
 
 const ItemList = (props) => {
+
+
     return (
 
         <> 
@@ -10,7 +12,7 @@ const ItemList = (props) => {
                 <div className="px-10 grid grid-cols-4 gap-4">
             {
                 props.productos.map((producto) => (
-                    <Item  producto={producto} />
+                    <Item key={producto.id} producto={producto} />
                 ))
             }
                 </div>

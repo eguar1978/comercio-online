@@ -5,6 +5,7 @@ import logo from './../../../assets/logo.png';
 import {Store} from '../../../context/store';
 import {ShowCart} from '../../../context/showCart'
 import { useContext } from 'react';
+import WidgetsCart from '../WidgetsCart';
 
 export const Nav = () => {
 
@@ -30,7 +31,7 @@ export const Nav = () => {
                     <div className="p-2">
                         <FaSearch size="2em" className="text-black"/>
                     </div>
-                    <div className="relative" onClick={ () => history.push('/cart') }>
+                    <div className="relative" onClick={ () => cerrarCarrito() }>
                         <FaShoppingCart size="2em" className="text-black" />
                         <div className="absolute -top-4 -right-3">
                             
@@ -56,7 +57,7 @@ export const Nav = () => {
                     <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/dama"> Dama </Link></span>
                     <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/caballero"> Caballero </Link></span>
                     <FaSearch size="1em" className="text-white md:hidden mr-1"/>
-                    <div className="relative md:hidden" onClick={ () => history.push('/cart') }>
+                    <div className="relative md:hidden" onClick={ () => cerrarCarrito() }>
                         <FaShoppingCart size="1em" className="text-white md:hidden mr-1"/>
                         <div className="absolute -top-3 -right-2">
 
@@ -76,6 +77,7 @@ export const Nav = () => {
                 </div>
 
             </div>
+            <WidgetsCart />
         </>
     );
 }

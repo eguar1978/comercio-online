@@ -10,18 +10,52 @@ const ItemDetail = ({ product, history, item }) => {
 
     const [data, setData] = useContext(Store);
     const [cant, setCant] = useState(1);	
+
+    const cantidadSeleccionada = {cantidad: cant}
+    const productos = Object.assign(product, cantidadSeleccionada)
+    //const importeTotalDeArticulo = 
+
+    
   
     const addCarrito = () => {
-        setData({
-            ...data, 
-            cantidad: data.cantidad + cant,
-            items: [...data.items, product],
-        });
 
-        history.push('/cart');
-        //alert(`Agregaste ${cant} productos al carrito`);	
+        //console.log(cant);   -> Trae la cantidad de productos elegidos
+
+        // INICIO DE AGREGAR O ACTUALIZAR EL CARRITO
+        // CONSULTA SI EL OBJETO EXISTE
+        Object.keys(data.items).length == 0 
+        ?   // SI EL CARRITO ESTA VACIO AGREGA EL PRIMER OBJETO
+            setData({
+                ...data, 
+                cantidad: data.cantidad + cant,
+                items: [...data.items, productos],
+            })
+        :  // SI EXISTEN PRODUCTOS EN EL CARRITO, COMPRUEBA SI EL QUE SE ESTA AGREGANDO YA EXISTE
+            ( 
+                data.items.map(item => 
+                    productos.id === item.id 
+                    ? // SI YA EXISTE, LE SUMA LA CANTIDAD AGREGADA
+                        console.log("aca, tengo que sumar la cantidad al objeto que tengo en context y no se como hacerlo")
+                    : // SI NO EXISTE, AGREGA EL PRODUCTO NUEVO AL CARRITO
+                    setData({
+                        ...data, 
+                        cantidad: data.cantidad + cant,
+                        items: [...data.items, productos],
+                    })
+                )
+            )
+
+        //FIN DE INSERCCION O ACTUALIZACION DE CARRITO
+        
+        
+
+        //history.push('/cart');
+        //alert(`Agregaste ${cant} productos al carrito`);
+        
     }
-
+  
+    
+    
     const sumaCarrito = () => {
         setCant(cant + 1);
     }
@@ -49,13 +83,13 @@ const ItemDetail = ({ product, history, item }) => {
                             <span className="text-gray-600 ml-3">4 Reseñas</span>
                             </span>
                             <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-                            <a className="text-gray-500">
+                            <a href="/#" className="text-gray-500">
                                 <SiFacebook />
                             </a>
-                            <a className="ml-2 text-gray-500">
+                            <a href="/#" className="ml-2 text-gray-500">
                                 <SiTwitter />
                             </a>
-                            <a className="ml-2 text-gray-500">
+                            <a href="/#" className="ml-2 text-gray-500">
                                 <SiWhatsapp />
                             </a>
                             </span>

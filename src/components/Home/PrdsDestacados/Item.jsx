@@ -1,4 +1,3 @@
-import ItemCount from "./ItemCount";
 import {Link, withRouter} from 'react-router-dom'
 
 const Item = ({producto}) =>{
