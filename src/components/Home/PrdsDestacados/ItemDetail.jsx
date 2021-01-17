@@ -12,7 +12,7 @@ const ItemDetail = ({ product, history, item }) => {
     const [cant, setCant] = useState(1);	
 
     const cantidadSeleccionada = {cantidad: cant}
-    const productos = Object.assign(product, cantidadSeleccionada)
+    
     //const importeTotalDeArticulo = 
 
     
@@ -23,30 +23,38 @@ const ItemDetail = ({ product, history, item }) => {
 
         // INICIO DE AGREGAR O ACTUALIZAR EL CARRITO
         // CONSULTA SI EL OBJETO EXISTE
-        Object.keys(data.items).length == 0 
-        ?   // SI EL CARRITO ESTA VACIO AGREGA EL PRIMER OBJETO
+        if(Object.keys(data.items).length == 0){ 
+            const productos = Object.assign(product, cantidadSeleccionada)
             setData({
                 ...data, 
                 cantidad: data.cantidad + cant,
                 items: [...data.items, productos],
             })
-        :  // SI EXISTEN PRODUCTOS EN EL CARRITO, COMPRUEBA SI EL QUE SE ESTA AGREGANDO YA EXISTE
-            ( 
-                data.items.map(item => 
-                    productos.id === item.id 
-                    ? // SI YA EXISTE, LE SUMA LA CANTIDAD AGREGADA
-                        console.log("aca, tengo que sumar la cantidad al objeto que tengo en context y no se como hacerlo")
-                    : // SI NO EXISTE, AGREGA EL PRODUCTO NUEVO AL CARRITO
-                    setData({
-                        ...data, 
-                        cantidad: data.cantidad + cant,
-                        items: [...data.items, productos],
-                    })
-                )
-            )
+
+        }else{
+             
+            const item = data.items.find( item => product.id === item.id )
+                    if(item){
+                        item.cantidad = item.cantidad + cant
+                        setData({
+                            ...data,
+                            cantidad: data.cantidad + cant,
+                            items: [...data.items],                
+                        })
+                    }else{
+                        const productos = Object.assign(product, cantidadSeleccionada)
+                        setData({
+                            ...data, 
+                            cantidad: data.cantidad + cant,
+                            items: [...data.items, productos],
+                        })
+                    }
+                
+                
+                
 
         //FIN DE INSERCCION O ACTUALIZACION DE CARRITO
-        
+        }
         
 
         //history.push('/cart');
