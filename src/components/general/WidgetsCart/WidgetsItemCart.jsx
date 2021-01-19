@@ -1,10 +1,15 @@
-import React from 'react'
+import { React } from 'react'
 import {Store} from '../../../context/store';
 import { useContext } from 'react'; 
 
 const WidgetsItemCart = ({datosItem}) => {
 
     const [data, setData] = useContext(Store);
+
+    const eliminarProducto = (productId) => {
+
+    }
+
 
     return (
         <>
@@ -20,7 +25,7 @@ const WidgetsItemCart = ({datosItem}) => {
                                 <li className="mb-1 text-white shadow">TOTAL </li>
                                 <li className="mb-1 text-white shadow">$ {(datosItem.cantidad * datosItem.precio).toFixed(2)}</li>
                                 <li className="pt-1">
-                                    <button className="bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
+                                    <button onClick={ () => eliminarProducto(datosItem.id) }  className="bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
                                         QUITAR
                                     </button>
                                 </li>

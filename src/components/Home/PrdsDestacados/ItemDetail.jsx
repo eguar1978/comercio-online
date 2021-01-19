@@ -12,35 +12,19 @@ const ItemDetail = ({ product, history, item }) => {
     const [cant, setCant] = useState(1);	
 
     const cantidadSeleccionada = {cantidad: cant}
-    
-    //const importeTotalDeArticulo = 
 
-    
-  
     const addCarrito = () => {
-
-        //console.log(cant);   -> Trae la cantidad de productos elegidos
-
-        // INICIO DE AGREGAR O ACTUALIZAR EL CARRITO
-        // CONSULTA SI EL OBJETO EXISTE
-        if(Object.keys(data.items).length == 0){ 
-            const productos = Object.assign(product, cantidadSeleccionada)
-            setData({
-                ...data, 
-                cantidad: data.cantidad + cant,
-                items: [...data.items, productos],
-            })
-
-        }else{
-             
+   
             const item = data.items.find( item => product.id === item.id )
                     if(item){
                         item.cantidad = item.cantidad + cant
+                        
                         setData({
                             ...data,
                             cantidad: data.cantidad + cant,
                             items: [...data.items],                
                         })
+                        
                     }else{
                         const productos = Object.assign(product, cantidadSeleccionada)
                         setData({
@@ -49,20 +33,10 @@ const ItemDetail = ({ product, history, item }) => {
                             items: [...data.items, productos],
                         })
                     }
-                
-                
-                
-
-        //FIN DE INSERCCION O ACTUALIZACION DE CARRITO
-        }
-        
-
-        //history.push('/cart');
-        //alert(`Agregaste ${cant} productos al carrito`);
         
     }
   
-    
+    console.log(data)
     
     const sumaCarrito = () => {
         setCant(cant + 1);

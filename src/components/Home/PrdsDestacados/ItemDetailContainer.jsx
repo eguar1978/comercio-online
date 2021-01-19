@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getProduct.then(rta => setProduct(rta))
-    },[]);
+    }); // Elimine el array vacio para evitar el mensaje de advertencia
 
     return (
         <>
