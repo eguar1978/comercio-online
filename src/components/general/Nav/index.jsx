@@ -52,14 +52,16 @@ export const Nav = () => {
                 </div>
 
                 <div className="h-8 mx-auto bg-gray-900 text-gray-400 flex items-center md:justify-center sm:p-2 justify-end ">
-                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/"> Home </Link>
-                    </span>
-                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/dama"> Dama </Link></span>
-                    <span className="p-2 md:flex lg:flex xl:flex hidden"><Link to="/categoria/caballero"> Caballero </Link></span>
+                    
+                    <div className="h-8 mx-auto bg-gray-900 text-gray-400 flex items-center md:justify-center sm:p-2 justify-end ">
+                    <span className="p-2 md:flex lg:flex xl:flex "><Link to="/"> Home </Link></span>
+                        <span className="p-2 md:flex lg:flex xl:flex "><Link to="/categoria/dama"> Dama </Link></span>
+                        <span className="p-2 md:flex lg:flex xl:flex "><Link to="/categoria/caballero"> Caballero </Link></span>
+                    </div>
                     <FaSearch size="1em" className="text-white md:hidden mr-1"/>
-                    <div className="relative md:hidden" onClick={ () => cerrarCarrito() }>
+                    <div className="relative md:hidden pr-2" onClick={ () => cerrarCarrito() }>
                         <FaShoppingCart size="1em" className="text-white md:hidden mr-1"/>
-                        <div className="absolute -top-3 -right-2">
+                        <div className="absolute -top-3 -right-0">
 
                             {data.cantidad > 0
                             ? 
@@ -73,7 +75,6 @@ export const Nav = () => {
                             }
                         </div>
                     </div>
-                    <GoGrabber  size="1.75em" className="text-white md:hidden mr-1"/>
                 </div>
 
             </div>

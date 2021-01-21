@@ -14,7 +14,13 @@ const Cart = () => {
 
     const [importeFinal, setImporteFinal] = useContext(ImporteTotal);
 
-    const iva = (importeFinal.sumaImporteTotal / 100) *22
+    const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
+
+    const totCart = totalWidGets.reduce((a, b) => a + b, 0)
+
+    const iva = (totCart / 100) * 22
+
+    const newImporteFinal = totCart + iva;
 
     return (
         <>
@@ -63,7 +69,7 @@ const Cart = () => {
                             Subtotal
                             </div>
                             <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                            ${importeFinal.sumaImporteTotal.toFixed(2)}
+                            ${totCart.toFixed(2)}
                             </div>
                         </div>
                         <div className="flex justify-between pt-4 border-b">
@@ -79,7 +85,7 @@ const Cart = () => {
                             Total
                         </div>
                         <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                            ${(importeFinal.sumaImporteTotal + iva).toFixed(2)}
+                            ${(newImporteFinal).toFixed(2)}
                         </div>
                         </div>
                         <a href="#">

@@ -31,9 +31,7 @@ const WidgetsCart = () => {
         })
     }
 
-    const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
 
-    const totCart = totalWidGets.reduce((a, b) => a + b, 0)
 
     return (
         <>
@@ -51,12 +49,8 @@ const WidgetsCart = () => {
                             data.items.map(item => <WidgetsItemCart key={item.id} datosItem={item} cantidad={data.cantidadArticulo}/>)
                         }
                         
-                        <div className="flex justify-center pt-2 pb-3 font-bold">
-                            <span>
-                                TOTAL COMPRA ${(totCart + iva).toFixed(2)}
-                            </span>
-                        </div>
-                        <div className="flex justify-center pb-6">
+
+                        <div className="flex justify-center pt-6 pb-6">
                             <button  onClick={ () => vaciarCarrito() } className="w-24 bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
                                 Vaciar
                             </button>

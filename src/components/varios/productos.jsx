@@ -15,7 +15,7 @@ export const listaProductos = [
         stock: 13,
         descripcion:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-        precio: 52,
+        precio: 50,
         imagen: "./../images/2.jpg"
     },{
         id: 3,
