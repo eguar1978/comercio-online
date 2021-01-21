@@ -36,7 +36,7 @@ const ItemDetail = ({ product, history, item }) => {
         
     }
   
-    console.log(data)
+    //console.log(data)
     
     const sumaCarrito = () => {
         setCant(cant + 1);
