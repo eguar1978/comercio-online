@@ -5,6 +5,7 @@ import {Store} from '../../../context/store';
 import { ShowCart } from "../../../context/showCart";
 import { ImporteTotal } from "../../../context/importeTotal";
 import { useContext } from 'react'; 
+import {Link, useHistory} from 'react-router-dom'
 
 
 const WidgetsCart = () => {
@@ -57,9 +58,11 @@ const WidgetsCart = () => {
                             </button>
                         </div>
                         <div className="flex justify-center pb-6">
-                            <button className="w-24 bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
-                                FINALIZAR
-                            </button>
+                            <Link to="/cart">  
+                                <button className="w-24 bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
+                                    FINALIZAR
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
