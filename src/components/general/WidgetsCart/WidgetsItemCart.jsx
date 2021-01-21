@@ -6,7 +6,7 @@ const WidgetsItemCart = ({datosItem}) => {
 
     const [data, setData] = useContext(Store);
 
-    
+    console.log(data)
 
     const eliminarProducto = (productId) => {
 
@@ -29,6 +29,8 @@ const WidgetsItemCart = ({datosItem}) => {
         })
 
     }
+
+
 
 
     return (

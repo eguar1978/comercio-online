@@ -12,28 +12,31 @@ const ItemDetail = ({ product, history, item }) => {
     const [cant, setCant] = useState(1);	
 
     const cantidadSeleccionada = {cantidad: cant}
+    const subTotalPorProducto = {subTotalProducto: product.precio * cant}
 
     const addCarrito = () => {
    
             const item = data.items.find( item => product.id === item.id )
                     if(item){
                         item.cantidad = item.cantidad + cant
+                        item.subTotalProducto = item.cantidad * item.precio;
                         
                         setData({
                             ...data,
-                            cantidad: data.cantidad + cant,
-                            items: [...data.items],                
+                                cantidad: data.cantidad + cant,
+                                items: [...data.items,],
                         })
                         
                     }else{
-                        const productos = Object.assign(product, cantidadSeleccionada)
+                        const productos = Object.assign(product, cantidadSeleccionada, subTotalPorProducto)
+                        //const subTotProductos = Object.assign(subTotalPorProducto)
+
                         setData({
                             ...data, 
                             cantidad: data.cantidad + cant,
                             items: [...data.items, productos],
                         })
                     }
-        
     }
   
     //console.log(data)

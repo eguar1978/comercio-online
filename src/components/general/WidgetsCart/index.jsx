@@ -31,6 +31,10 @@ const WidgetsCart = () => {
         })
     }
 
+    const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
+
+    const totCart = totalWidGets.reduce((a, b) => a + b, 0)
+
     return (
         <>
 
@@ -49,7 +53,7 @@ const WidgetsCart = () => {
                         
                         <div className="flex justify-center pt-2 pb-3 font-bold">
                             <span>
-                                TOTAL COMPRA ${(importeFinal.sumaImporteTotal + iva).toFixed(2)}
+                                TOTAL COMPRA ${(totCart + iva).toFixed(2)}
                             </span>
                         </div>
                         <div className="flex justify-center pb-6">

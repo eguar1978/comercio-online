@@ -7,7 +7,7 @@ const PrecioTotal = ({datosItem}) => {
 
     const [importeFinal, setImporteFinal] = useContext(ImporteTotal);
 
-    //console.log(datosItem.cantidad);
+
 
     useEffect(() => {
         setImporteFinal({
