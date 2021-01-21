@@ -22,6 +22,14 @@ const WidgetsCart = () => {
 
     const iva = (importeFinal.sumaImporteTotal / 100) *22
 
+    const vaciarCarrito = () => {
+        setData({
+            data,
+            cantidad: 0,
+            items: [],
+        })
+    }
+
     return (
         <>
 
@@ -42,6 +50,11 @@ const WidgetsCart = () => {
                             <span>
                                 TOTAL COMPRA ${(importeFinal.sumaImporteTotal + iva).toFixed(2)}
                             </span>
+                        </div>
+                        <div className="flex justify-center pb-6">
+                            <button  onClick={ () => vaciarCarrito() } className="w-24 bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
+                                Vaciar
+                            </button>
                         </div>
                         <div className="flex justify-center pb-6">
                             <button className="w-24 bg-red-700 p-2 inline-block text-center text-black transition rounded shadow hover:shadow-lg hover:text-white focus:outline-none waves-effect">
