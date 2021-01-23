@@ -1,43 +1,58 @@
 import {useState, useEffect} from 'react';
 import Loading from '../../varios/Loading';
-import { listaProductos } from '../../varios/productos'
 import {useParams} from 'react-router-dom'
 import ItemList from './ItemList';
+import { getFirestore } from '../../db'
 
 export const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([]);
+    const db = getFirestore();
 
     const { categoria } = useParams();
+
+
+  /* TRAE EL TOTAL DE PRODUCTOS O DISCRIMINADO POR CATEGORIA */
+
+  const llamadoProductos = () => {
+
+    if(categoria){
       
-    const promesaProductos = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(listaProductos), 500);
-    });
-  
-    const llamadoProductos = () => {
-      promesaProductos.then((respuesta) => {
-        if (categoria) {
-          const productosPorCategoria = respuesta.filter(
-            (producto) => producto.categoria === categoria
-          );
-          setProductos(productosPorCategoria);
-        } else {
-          setProductos(respuesta);
-        }
-      });
-    };
+        db.collection('products').where("categoria", "==", categoria).get().then(docs => {
+        let arr = [];
+        docs.forEach(doc => {
+          //arr.push({id: doc.id, data: doc.data()})
+          arr.push(doc.data())
+        })
+          setProductos(arr);
+        })
+        .catch(e => console.log(e) );
+      
+    }else{
+            
+        db.collection('products').get().then(docs => {
+        let arr = [];
+        docs.forEach(doc => {
+          //arr.push({id: doc.id, data: doc.data()})
+          arr.push(doc.data())
+        })
+          setProductos(arr);
+        })
+        .catch(e => console.log(e) );
+    }
+  }
 
     useEffect(() => llamadoProductos(), [categoria]);
 
     /* MENEJAR STOCK Y CANTIDAD DE ARTICULOS A AGREGAR AL CARRO */
 
     return (
-            productos.length > 0 ? (
-              <ItemList key={productos.id} productos={productos} />
-            ) : (
-              <Loading />
-            )
-    )
+      productos.length > 0 ? (
+        <ItemList key={productos.id} productos={productos} />
+      ) : (
+        <Loading />
+      )
+)
 
 }
 
