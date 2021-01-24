@@ -14,7 +14,7 @@ const PrecioTotal = ({datosItem}) => {
             ...importeFinal,
             sumaImporteTotal: importeFinal.sumaImporteTotal + (datosItem.cantidad * datosItem.precio),
         });
-    }, []);
+    },[]);
     
 
     //console.log(importeFinal);

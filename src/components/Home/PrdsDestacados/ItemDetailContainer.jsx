@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
     const getProduct = new Promise((resolve, reject) => {
 
         setTimeout(() => {
-            const productoClickeado = listaProductos.find( producto => producto.id == itemid )
+            const productoClickeado = listaProductos.find( producto => producto.id === Number(itemid) )
             resolve(productoClickeado);
           }, 500);
 
@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getProduct.then(rta => setProduct(rta))
-    }); // Elimine el array vacio para evitar el mensaje de advertencia
+    },[]); // Elimine el array vacio para evitar el mensaje de advertencia
 
     return (
         <>

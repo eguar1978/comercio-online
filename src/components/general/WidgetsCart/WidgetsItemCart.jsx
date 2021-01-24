@@ -6,8 +6,6 @@ const WidgetsItemCart = ({datosItem}) => {
 
     const [data, setData] = useContext(Store);
 
-    console.log(data)
-
     const eliminarProducto = (productId) => {
 
         const nuevoListado = data.items.filter( carroActual => carroActual.id !== productId )
@@ -24,7 +22,7 @@ const WidgetsItemCart = ({datosItem}) => {
 
         setData({
             data,
-            cantidad: data.cantidad - restaCantidad,
+            cantidad: data.cantidad - restaCantidad[0],
             items: nuevoListado,                
         })
 

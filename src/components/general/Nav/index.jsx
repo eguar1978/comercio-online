@@ -1,6 +1,5 @@
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
-import { GoGrabber } from "react-icons/go";
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import logo from './../../../assets/logo.png';
 import {Store} from '../../../context/store';
 import {ShowCart} from '../../../context/showCart'
@@ -9,9 +8,7 @@ import WidgetsCart from '../WidgetsCart';
 
 export const Nav = () => {
 
-    const history = useHistory();
-
-    const [data, setData] = useContext(Store);
+    const [data] = useContext(Store);
 
     const [showCart, setShowCart] = useContext(ShowCart);
 

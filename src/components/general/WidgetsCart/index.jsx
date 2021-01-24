@@ -3,9 +3,8 @@ import { IoMdCloseCircle } from "react-icons/io";
 import WidgetsItemCart from './WidgetsItemCart';
 import {Store} from '../../../context/store';
 import { ShowCart } from "../../../context/showCart";
-import { ImporteTotal } from "../../../context/importeTotal";
 import { useContext } from 'react'; 
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const WidgetsCart = () => {
@@ -18,10 +17,6 @@ const WidgetsCart = () => {
     }
 
     const [data, setData] = useContext(Store);
-
-    const [importeFinal, setImporteFinal] = useContext(ImporteTotal);
-
-    const iva = (importeFinal.sumaImporteTotal / 100) *22
 
     const vaciarCarrito = () => {
         setData({

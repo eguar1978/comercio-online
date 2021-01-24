@@ -3,16 +3,13 @@ import { FaRegCreditCard } from 'react-icons/fa';
 import ItemCart from './ItemCart';
 import PrecioTotal from './PrecioTotal';
 import {Store} from '../../../context/store';
-import { ImporteTotal } from "../../../context/importeTotal";
 import { useContext } from 'react'; 
 
 
 const Cart = () => {
 
 
-    const [data, setData] = useContext(Store);
-
-    const [importeFinal, setImporteFinal] = useContext(ImporteTotal);
+    const [data] = useContext(Store);
 
     const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
 
@@ -88,7 +85,7 @@ const Cart = () => {
                             ${(newImporteFinal).toFixed(2)}
                         </div>
                         </div>
-                        <a href="#">
+                        <a href="formulario.hrml">
                         <button className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
                          <FaRegCreditCard className="mt-1"/>
                         <span className="ml-2 mt-5px">Procede a pagar</span>
