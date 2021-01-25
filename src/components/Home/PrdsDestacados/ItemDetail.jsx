@@ -1,15 +1,18 @@
 import React from 'react';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect } from 'react';
 import { SiFacebook, SiTwitter, SiWhatsapp } from "react-icons/si";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import ItemCount from './ItemCount';
 import { withRouter } from 'react-router-dom';
 import {Store} from '../../../context/store'
+import AlertStock from '../../varios/AlertStock';
 
 const ItemDetail = ({ product, history, item }) => {
 
     const [data, setData] = useContext(Store);
-    const [cant, setCant] = useState(1);	
+    const [cant, setCant] = useState(1);
+    const [alertaStock, setAlertaStock] = useState(0)
+    const [mostrarAlerta, setMonstrarAlerta] = useState(false)
 
     const cantidadSeleccionada = {cantidad: cant}
     const subTotalPorProducto = {subTotalProducto: product.precio * cant}
@@ -18,29 +21,38 @@ const ItemDetail = ({ product, history, item }) => {
    
             const item = data.items.find( item => product.id === item.id )
                     if(item){
-                        item.cantidad = item.cantidad + cant
-                        item.subTotalProducto = item.cantidad * item.precio;
+                        if(item.stock >= (item.cantidad + cant)){
+                            item.cantidad = item.cantidad + cant
+                            item.subTotalProducto = item.cantidad * item.precio;
+                            setData({
+                                ...data,
+                                    cantidad: data.cantidad + cant,
+                                    items: [...data.items,],
+                            })
+                        }else{
+                            setAlertaStock(item.cantidad + cant)
+                        }
                         
-                        setData({
-                            ...data,
-                                cantidad: data.cantidad + cant,
-                                items: [...data.items,],
-                        })
                         
                     }else{
                         const productos = Object.assign(product, cantidadSeleccionada, subTotalPorProducto)
-                        //const subTotProductos = Object.assign(subTotalPorProducto)
+                        if(productos.stock >= cantidadSeleccionada.cantidad){
+                            setData({
+                                ...data, 
+                                cantidad: data.cantidad + cant,
+                                items: [...data.items, productos],
+                            })
+                        }else{
+                            setAlertaStock(alertaStock + cant)
+                        }
 
-                        setData({
-                            ...data, 
-                            cantidad: data.cantidad + cant,
-                            items: [...data.items, productos],
-                        })
                     }
     }
   
-    //console.log(data)
-    
+    useEffect(() => {
+        alertaStock > 0 && setMonstrarAlerta(true)
+    });
+
     const sumaCarrito = () => {
         setCant(cant + 1);
     }
@@ -106,7 +118,13 @@ const ItemDetail = ({ product, history, item }) => {
                         </div>
                     </div>
                     </div>
-                </section>|   
+                </section>
+                
+                        {
+                            mostrarAlerta && <AlertStock stock={product.stock} cantidadSeleccionada={alertaStock}/>
+                        }    
+
+
         </>
     )
 }
