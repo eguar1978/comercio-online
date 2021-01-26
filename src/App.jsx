@@ -5,6 +5,7 @@ import Error404 from './components/general/Error404';
 import Nav from './components/general/Nav';
 import ItemDetailContainer from './components/Home/PrdsDestacados/ItemDetailContainer';
 import ItemListContainer from './components/Home/PrdsDestacados/ItemListContainer';
+import Checkout from './components/general/Checkout'
 import {Store} from '../src/context/store';
 import {ShowCart} from '../src/context/showCart';
 import {ImporteTotal} from '../src/context/importeTotal'
@@ -50,6 +51,9 @@ function App() {
                     </Route>
                     <Route exact path="/cart">
                         <Cart />
+                    </Route>
+                    <Route exact path="/checkout">
+                        <Checkout />
                     </Route>
                     <Route path="*">
                         <Error404 />
