@@ -3,7 +3,8 @@ import { FaRegCreditCard } from 'react-icons/fa';
 import ItemCart from './ItemCart';
 import PrecioTotal from './PrecioTotal';
 import {Store} from '../../../context/store';
-import { useContext } from 'react'; 
+import { ImporteTotal } from '../../../context/importeTotal'
+import { useContext, useEffect } from 'react'; 
 import {Link} from 'react-router-dom'
 
 
@@ -11,6 +12,7 @@ const Cart = () => {
 
 
     const [data] = useContext(Store);
+    const [ImporteFinal, SetImporteFinal] = useContext(ImporteTotal);
 
     const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
 
@@ -18,7 +20,11 @@ const Cart = () => {
 
     const iva = (totCart / 100) * 22
 
-    const newImporteFinal = totCart + iva;
+    const newImporteFinal = (totCart + iva).toFixed(2);
+
+    useEffect(() => {
+        SetImporteFinal(newImporteFinal);
+    },[]);
 
     return (
         <>
@@ -83,7 +89,7 @@ const Cart = () => {
                             Total
                         </div>
                         <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                            ${(newImporteFinal).toFixed(2)}
+                            ${newImporteFinal}
                         </div>
                         </div>
                         <a href="formulario.hrml">
