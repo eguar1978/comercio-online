@@ -16,9 +16,11 @@ export const ItemListContainer = () => {
 
   const llamadoProductos = () => {
 
-    if(categoria){
-      
-        db.collection('products').where("categoria", "==", categoria).get().then(docs => {
+    let llamadoFirebase = db.collection('products')
+
+    if(categoria){ llamadoFirebase = db.collection('products').where("categoria", "==", categoria) }
+  
+      llamadoFirebase.get().then(docs => {
         let arr = [];
         docs.forEach(doc => {
           //arr.push({id: doc.id, data: doc.data()})
@@ -27,20 +29,8 @@ export const ItemListContainer = () => {
           setProductos(arr);
         })
         .catch(e => console.log(e) );
-      
-    }else{
-            
-        db.collection('products').get().then(docs => {
-        let arr = [];
-        docs.forEach(doc => {
-          //arr.push({id: doc.id, data: doc.data()})
-          arr.push(doc.data())
-        })
-          setProductos(arr);
-        })
-        .catch(e => console.log(e) );
-    }
   }
+  
 
     useEffect(() => llamadoProductos(), [categoria]);
 
