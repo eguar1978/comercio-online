@@ -1,6 +1,6 @@
 import {Link, withRouter} from 'react-router-dom'
 
-const Item = ({producto}) =>{
+const Item = ({id, producto}) =>{
     
     return (
         <>
@@ -8,7 +8,7 @@ const Item = ({producto}) =>{
                     <div className="bg-white rounded-lg mt-5">
                         <img
                             src={producto.imagen}
-                            className="h-40 rounded-md"
+                            className="h-80 rounded-md"
                             alt=""
                         />
                     </div>
@@ -31,14 +31,13 @@ const Item = ({producto}) =>{
                             </div>
                             <div className="flex items-center justify-center">
                                 <button className="uppercase px-2 py-1 rounded bg-blue-300 text-blue-900 max-w-max shadow-sm hover:shadow-lg mt-1">
-                                        <Link to={`/item/${producto.id}`}>  Ver más </Link>
+                                        <Link to={`/item/${id}`}>  Ver más </Link>
                                 </button>
                             </div>
 
                         </div>
                     </div>
                 </div>
-           
         </>
     );
 };

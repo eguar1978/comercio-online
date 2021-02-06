@@ -6,20 +6,25 @@ import ItemCount from './ItemCount';
 import { withRouter } from 'react-router-dom';
 import {Store} from '../../../context/store'
 import AlertStock from '../../varios/AlertStock';
+import {useParams} from 'react-router-dom'
 
-const ItemDetail = ({ product, history, item }) => {
+
+const ItemDetail = ({ product }) => {
 
     const [data, setData] = useContext(Store);
     const [cant, setCant] = useState(1);
     const [alertaStock, setAlertaStock] = useState(0)
     const [mostrarAlerta, setMonstrarAlerta] = useState(false)
+    const { itemid } = useParams();
+  
 
     const cantidadSeleccionada = {cantidad: cant}
     const subTotalPorProducto = {subTotalProducto: product.precio * cant}
+    const id = {id: itemid};
 
     const addCarrito = () => {
    
-            const item = data.items.find( item => product.id === item.id )
+            const item = data.items.find( item => itemid === item.id )
                     if(item){
                         if(item.stock >= (item.cantidad + cant)){
                             item.cantidad = item.cantidad + cant
@@ -35,7 +40,7 @@ const ItemDetail = ({ product, history, item }) => {
                         
                         
                     }else{
-                        const productos = Object.assign(product, cantidadSeleccionada, subTotalPorProducto)
+                        const productos = Object.assign(product, cantidadSeleccionada, subTotalPorProducto, id)
                         if(productos.stock >= cantidadSeleccionada.cantidad){
                             setData({
                                 ...data, 
@@ -66,7 +71,7 @@ const ItemDetail = ({ product, history, item }) => {
             <section className="text-gray-700 body-font overflow-hidden bg-white">
                     <div className="container px-5 py-24 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" className="lg:w-3/4 w-full object-cover object-center rounded border border-gray-200 bg-white" src={product.imagen} />
+                        <img alt="ecommerce" className="lg:w-1/2 object-cover object-center rounded border border-gray-200 bg-white" src={product.imagen} />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">{product.nombre}</h2>
                         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.nombre}</h1>
@@ -80,15 +85,15 @@ const ItemDetail = ({ product, history, item }) => {
                             <span className="text-gray-600 ml-3">4 Reseñas</span>
                             </span>
                             <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-                            <a href="/#" className="text-gray-500">
+                            <span className="text-gray-500">
                                 <SiFacebook />
-                            </a>
-                            <a href="/#" className="ml-2 text-gray-500">
+                            </span>
+                            <span className="ml-2 text-gray-500">
                                 <SiTwitter />
-                            </a>
-                            <a href="/#" className="ml-2 text-gray-500">
+                            </span>
+                            <span className="ml-2 text-gray-500">
                                 <SiWhatsapp />
-                            </a>
+                            </span>
                             </span>
                         </div>
                         <p className="leading-relaxed">{product.descripcion}</p>

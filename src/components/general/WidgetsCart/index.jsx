@@ -18,6 +18,8 @@ const WidgetsCart = () => {
 
     const [data, setData] = useContext(Store);
 
+    //console.log(data.items)
+
     const vaciarCarrito = () => {
         setData({
             data,

@@ -1,32 +1,28 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
-
+import { getFirestore } from '../../db'
 import Loading from '../../varios/Loading';
 import ItemDetail from './ItemDetail';
-import { listaProductos } from './../../varios/productos'
 import {useParams} from 'react-router-dom'
 
 
 const ItemDetailContainer = () => {
 
-    
-
     const [producto, setProduct] = useState(null);
+    const { itemid } = useParams(); 
+    const db = getFirestore();
 
-    const { itemid } = useParams();
-
-    const getProduct = new Promise((resolve, reject) => {
-
-        setTimeout(() => {
-            const productoClickeado = listaProductos.find( producto => producto.id === Number(itemid) )
-            resolve(productoClickeado);
-          }, 500);
-
-    });
+    let docRef = db.collection("products").doc(itemid);
 
     useEffect(() => {
-        getProduct.then(rta => setProduct(rta))
-    }); // Elimine el array vacio para evitar el mensaje de advertencia
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                setProduct(doc.data())
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }, []); 
 
     return (
         <>
@@ -34,7 +30,7 @@ const ItemDetailContainer = () => {
             {
                 producto ?
             <>
-                <ItemDetail product={producto} />
+                <ItemDetail itemid={itemid} product={producto} />
             </>
             :
                 <>

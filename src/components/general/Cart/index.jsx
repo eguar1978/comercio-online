@@ -1,18 +1,15 @@
 import React from 'react'
 import { FaRegCreditCard } from 'react-icons/fa';
 import ItemCart from './ItemCart';
-import PrecioTotal from './PrecioTotal';
+//import PrecioTotal from './PrecioTotal';
 import {Store} from '../../../context/store';
-import { ImporteTotal } from '../../../context/importeTotal'
-import { useContext, useEffect } from 'react'; 
+import { useContext } from 'react'; 
 import {Link} from 'react-router-dom'
 
 
 const Cart = () => {
 
-
     const [data] = useContext(Store);
-    const [ImporteFinal, SetImporteFinal] = useContext(ImporteTotal);
 
     const totalWidGets = data.items.map((totWidGetCard, index) => (totWidGetCard.subTotalProducto))
 
@@ -20,15 +17,8 @@ const Cart = () => {
 
     const iva = (totCart / 100) * 22
 
-    const newImporteFinal = (totCart + iva).toFixed(2);
-
-    useEffect(() => {
-        SetImporteFinal(newImporteFinal);
-    },[]);
-
     return (
         <>
-
             <div className="flex justify-center my-6">
                 <div className="flex flex-col w-full p-8 text-gray-800 bg-blue-200 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
                     <div className="flex-1">
@@ -50,7 +40,7 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                data.items.map(item => <ItemCart key={item.id} datosItem={item} cantidad={data.cantidadArticulo}/>)
+                                data.items.map(item => <ItemCart datosItem={item} cantidad={data.cantidadArticulo}/>)
                             }
                         </tbody>
                     </table>
@@ -59,7 +49,7 @@ const Cart = () => {
             </div>
 
                             {
-                                data.items.map(item => <PrecioTotal key={item.id} datosItem={item} cantidad={data.cantidadArticulo}/>)
+                               // data.items.map(item => <PrecioTotal key={item.id} datosItem={item} cantidad={data.cantidadArticulo}/>)
                             }
 
             <div className="flex justify-center my-6">
@@ -89,17 +79,17 @@ const Cart = () => {
                             Total
                         </div>
                         <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                            ${newImporteFinal}
+                            ${(totCart + iva).toFixed(2)}
                         </div>
                         </div>
-                        <a href="formulario.hrml">
+                        <div>
                         <Link to="/checkout">      
                             <button className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
-                            <FaRegCreditCard className="mt-1"/>
+                                <FaRegCreditCard className="mt-1"/>
                             <span className="ml-2 mt-5px">Procede a pagar</span>
                             </button>
                         </Link>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
