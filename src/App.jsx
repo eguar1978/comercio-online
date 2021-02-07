@@ -8,7 +8,6 @@ import ItemListContainer from './components/Home/PrdsDestacados/ItemListContaine
 import Checkout from './components/general/Checkout'
 import {Store} from '../src/context/store';
 import {ShowCart} from '../src/context/showCart';
-import {ImporteTotal} from '../src/context/importeTotal'
 
 
 function App() {
@@ -27,16 +26,9 @@ function App() {
 
     });
 
-    const [importeFinal, setImporteFinal] = useState({
-
-        sumaImporteTotal: 0,
-
-    });
-
        return (
         <Store.Provider value={[data, setData]}>
          <ShowCart.Provider value={[showCart, setShowCart]}>
-          <ImporteTotal.Provider value={[importeFinal, setImporteFinal]}>
             <BrowserRouter>
                 <Nav />
                 <Switch>
@@ -60,8 +52,6 @@ function App() {
                     </Route>
                 </Switch>
             </BrowserRouter>
-
-          </ImporteTotal.Provider>
          </ShowCart.Provider>
         </Store.Provider>
         );

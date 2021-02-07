@@ -7,9 +7,9 @@ const Item = ({id, producto}) =>{
                 <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center pb-4">
                     <div className="bg-white rounded-lg mt-5">
                         <img
-                            src={producto.imagen}
+                            src={producto.thumbnail}
                             className="h-80 rounded-md"
-                            alt=""
+                            alt={producto.nombre}
                         />
                     </div>
                     <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">

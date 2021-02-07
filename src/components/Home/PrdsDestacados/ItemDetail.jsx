@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import {Store} from '../../../context/store'
 import AlertStock from '../../varios/AlertStock';
 import {useParams} from 'react-router-dom'
+import Alert from '../../varios/Alert';
 
 
 const ItemDetail = ({ product }) => {
@@ -14,9 +15,10 @@ const ItemDetail = ({ product }) => {
     const [data, setData] = useContext(Store);
     const [cant, setCant] = useState(1);
     const [alertaStock, setAlertaStock] = useState(0)
-    const [mostrarAlerta, setMonstrarAlerta] = useState(false)
+    const [alertaSinStock, setMonstrarAlerta] = useState(false)
+    const [alertaCompraMinima, setAlertaCompraMinima] = useState(false)
     const { itemid } = useParams();
-  
+    
 
     const cantidadSeleccionada = {cantidad: cant}
     const subTotalPorProducto = {subTotalProducto: product.precio * cant}
@@ -36,6 +38,7 @@ const ItemDetail = ({ product }) => {
                             })
                         }else{
                             setAlertaStock(item.cantidad + cant)
+                            setMonstrarAlerta(false)
                         }
                         
                         
@@ -48,22 +51,25 @@ const ItemDetail = ({ product }) => {
                                 items: [...data.items, productos],
                             })
                         }else{
+
                             setAlertaStock(alertaStock + cant)
+                            setMonstrarAlerta(false)
                         }
 
                     }
     }
   
-    useEffect(() => {
-        alertaStock > 0 && setMonstrarAlerta(true)
-    });
 
+    useEffect(() => {
+        alertaStock > 0 ? setMonstrarAlerta(true) : setMonstrarAlerta(false)
+    },[alertaStock]);
+    
     const sumaCarrito = () => {
         setCant(cant + 1);
     }
 
     const restaCarrito = () => {
-        cant > 1 ? setCant(cant - 1) : alert("El minimo de compra es 1");
+        cant > 1 ? setCant(cant - 1) : setAlertaCompraMinima(true) ;
     }
 
     return (
@@ -71,7 +77,7 @@ const ItemDetail = ({ product }) => {
             <section className="text-gray-700 body-font overflow-hidden bg-white">
                     <div className="container px-5 py-24 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" className="lg:w-1/2 object-cover object-center rounded border border-gray-200 bg-white" src={product.imagen} />
+                        <img alt={product.nombre} className="lg:w-1/2 object-cover object-center rounded border border-gray-200 bg-white" src={product.imagen} />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">{product.nombre}</h2>
                         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.nombre}</h1>
@@ -126,9 +132,11 @@ const ItemDetail = ({ product }) => {
                 </section>
                 
                         {
-                            mostrarAlerta && <AlertStock stock={product.stock} cantidadSeleccionada={alertaStock}/>
+                            alertaSinStock && <AlertStock stock={product.stock} cantidadSeleccionada={alertaStock}/>
                         }    
-
+                        {
+                            alertaCompraMinima && <Alert />
+                        } 
 
         </>
     )

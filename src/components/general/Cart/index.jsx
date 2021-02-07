@@ -1,7 +1,6 @@
 import React from 'react'
 import { FaRegCreditCard } from 'react-icons/fa';
 import ItemCart from './ItemCart';
-//import PrecioTotal from './PrecioTotal';
 import {Store} from '../../../context/store';
 import { useContext } from 'react'; 
 import {Link} from 'react-router-dom'
@@ -47,10 +46,6 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-
-                            {
-                               // data.items.map(item => <PrecioTotal key={item.id} datosItem={item} cantidad={data.cantidadArticulo}/>)
-                            }
 
             <div className="flex justify-center my-6">
                 <div className="w-full p-8 text-gray-800 bg-blue-200 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
